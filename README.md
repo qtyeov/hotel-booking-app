@@ -13,6 +13,32 @@ A responsive web application to view and book hotel rooms. Guests can view avail
 
 ---
 
+### 🚀 How to Run the App
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/qtyeov/hotel-booking-app.git
+   cd hotel-booking-app
+
+2. **Install the dependencies:**
+   ```bash
+   npm install
+
+3. **Start the Angular development server:**
+   ```bash
+   ng serve
+
+---
+
+### 📦 Assumptions Made
+
+- All room data is hardcoded and simulated using RxJS of(...).
+- Booking actions update local in-memory state only (no backend).
+- Bookings do not persist after page reload.
+- Minimal input validation is used — assumes user provides valid name and dates.
+- No authentication or admin features are included in this version.
+
+---
+
 ### 🧩 Screenshots
 
 Room Listing            |  Booking Modal

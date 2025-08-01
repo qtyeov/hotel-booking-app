@@ -1,0 +1,36 @@
+<div class="container my-5">
+  <h3 class="mb-4 fw-semibold text-secondary text-center">Available Rooms</h3>
+
+  <div class="room-box mb-4" *ngFor="let room of rooms">
+    <div class="room-header px-3 py-2 bg-light border rounded-top text-muted small">
+      Room #{{ room.id }}
+    </div>
+
+    <div class="room-body border border-top-0 rounded-bottom px-4 py-3 bg-white">
+      <h5 class="fw-semibold text-dark mb-1">Room for {{ room.type }}</h5>
+      <p class="mb-2 text-muted">Price: RM{{ room.price }}</p>
+      <p class="mb-3">
+        Status:
+        <span 
+          class="fw-semibold"
+          [class.text-danger]="room.availability === 'Booked'"
+          [class.text-success]="room.availability === 'Available'"
+        >
+          {{ room.availability }}
+        </span>
+      </p>
+
+      <button 
+        class="btn btn-reserve"
+        [disabled]="room.availability === 'Booked'"
+        (click)="selectRoom(room.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#bookingModal"
+      >
+        Book Room
+      </button>
+    </div>
+  </div>
+
+  <app-book-room [roomId]="selectedRoomId"></app-book-room>
+</div>

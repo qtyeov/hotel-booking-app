@@ -1,47 +1,40 @@
-<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+<div class="modal fade" id="bookingModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow-sm border-0">
+    <div class="modal-content">
+  
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Book Your Room</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form [formGroup]="bookingForm" (ngSubmit)="confirmBooking()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Room ID</label>
+            <input type="text" class="form-control" [value]="roomId" disabled />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Guest Name</label>
+            <input class="form-control" formControlName="guestName" />
+          </div>
+          <div class="row">
+            <div class="col">
+              <label class="form-label">Check-In</label>
+              <input type="date" class="form-control" formControlName="checkIn" />
+            </div>
+            <div class="col">
+              <label class="form-label">Check-Out</label>
+              <input type="date" class="form-control" formControlName="checkOut" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
       
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="bookingModalLabel">Book Your Room</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body px-4 py-3">
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Room ID</label>
-          <input type="text" class="form-control" [value]="roomId" disabled />
+          <button type="submit" class="btn btn-success">Confirm Booking</button>
         </div>
-
-        <div class="mb-3">
-          <label for="guestName" class="form-label fw-semibold">Guest Name</label>
-          <input
-            id="guestName"
-            class="form-control"
-            [(ngModel)]="guestName"
-            placeholder="Enter full name"
-          />
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label fw-semibold">Check-In Date</label>
-            <input type="date" class="form-control" [(ngModel)]="checkIn" />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label fw-semibold">Check-Out Date</label>
-            <input type="date" class="form-control" [(ngModel)]="checkOut" />
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer bg-light px-4 py-3">
-        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" (click)="confirmBooking()" data-bs-dismiss="modal">
-          Confirm Booking
-        </button>
-      </div>
-
+      </form>
     </div>
   </div>
 </div>

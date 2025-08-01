@@ -5,11 +5,12 @@ A responsive web application to view and book hotel rooms. Guests can view avail
 ---
 
 ### ✨ Features
-- List of hotel rooms with ID, type, price, and availability
-- Booking form in modal popup (guest name, check-in/out date)
-- Simulated booking action using local state
+- List of hotel rooms with ID, name, type, price, and availability
+- Modal booking form with Reactive Forms (guest name, check-in/out)
+- Room availability is persisted using `localStorage`
 - Success toast notification after booking
-- Clean, responsive UI built with Bootstrap
+- Filter rooms by type (Single, Double, Suite)
+- Clean UI with Bootstrap grid and utility classes
 
 ---
 
@@ -31,11 +32,11 @@ A responsive web application to view and book hotel rooms. Guests can view avail
 
 ### 📦 Assumptions Made
 
-- All room data is hardcoded and simulated using RxJS of(...).
-- Booking actions update local in-memory state only (no backend).
-- Bookings do not persist after page reload.
-- Minimal input validation is used — assumes user provides valid name and dates.
-- No authentication or admin features are included in this version.
+- Room data is hardcoded using RxJS of(...) and no external API is called.
+- Booking logic is simulated in memory and persisted in localStorage.
+- Each booking updates the room status to Booked.
+- No backend or database is integrated.
+- No authentication or role management included.
 
 ---
 
@@ -43,7 +44,7 @@ A responsive web application to view and book hotel rooms. Guests can view avail
 
 Room Listing            |  Booking Modal
 :-------------------------:|:-------------------------:
-![Rooms Screenshot](src/assets/screenshots/rooms.png) | ![Booking Screenshot](src/assets/screenshots/booking.png)
+![Rooms Screenshot](src/assets/screenshots/room1.png) | ![Booking Screenshot](src/assets/screenshots/booking1.png)
 
 ---
 

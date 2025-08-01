@@ -1,36 +1,48 @@
-<div class="container my-5">
-  <h3 class="mb-4 fw-semibold text-secondary text-center">Available Rooms</h3>
+<div class="container py-5">
+  <h2 class="text-center text-success fw-semibold mb-4">Available Rooms</h2>
 
-  <div class="room-box mb-4" *ngFor="let room of rooms">
-    <div class="room-header px-3 py-2 bg-light border rounded-top text-muted small">
-      Room #{{ room.id }}
-    </div>
+  <!-- Filter Dropdown -->
+  <div class="d-flex align-items-center gap-2 mb-4">
+    <label class="form-label mb-0">Filter by Room Type:</label>
+    <select class="form-select w-auto" [(ngModel)]="selectedType">
+      <option *ngFor="let type of roomTypes" [value]="type">{{ type }}</option>
+    </select>
+  </div>
 
-    <div class="room-body border border-top-0 rounded-bottom px-4 py-3 bg-white">
-      <h5 class="fw-semibold text-dark mb-1">Room for {{ room.type }}</h5>
-      <p class="mb-2 text-muted">Price: RM{{ room.price }}</p>
-      <p class="mb-3">
-        Status:
-        <span 
-          class="fw-semibold"
-          [class.text-danger]="room.availability === 'Booked'"
-          [class.text-success]="room.availability === 'Available'"
-        >
-          {{ room.availability }}
-        </span>
-      </p>
+  <!-- Room Cards -->
+  <div class="row">
+    <div class="col-12 mb-4" *ngFor="let room of filteredRooms">
+      <div class="card border shadow-sm">
+        <!-- Card Header -->
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <span class="fw-semibold">Room #{{ room.name }}</span>
+          <span
+            class="badge px-3 py-1"
+            [class.bg-success]="room.availability === 'Available'"
+            [class.bg-danger]="room.availability === 'Booked'">
+            {{ room.availability }}
+          </span>
+        </div>
 
-      <button 
-        class="btn btn-reserve"
-        [disabled]="room.availability === 'Booked'"
-        (click)="selectRoom(room.id)"
-        data-bs-toggle="modal"
-        data-bs-target="#bookingModal"
-      >
-        Book Room
-      </button>
+        <!-- Card Body -->
+        <div class="card-body">
+          <h5 class="card-title mb-2 text-dark">Room for {{ room.type }}</h5>
+          <p class="card-text text-muted mb-1">
+            This room offers a comfortable stay with all basic amenities.
+          </p>
+          <p class="mb-3 fw-semibold">Price: RM{{ room.price }}</p>
+
+          <button
+            class="btn btn-success"
+            [disabled]="room.availability === 'Booked'"
+            (click)="selectRoom(room)">
+            Reserve This Room
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Booking Modal Component -->
   <app-book-room [roomId]="selectedRoomId"></app-book-room>
 </div>
